@@ -4,6 +4,7 @@ import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/
 import { z } from "zod";
 
 const BARK_KEY = process.env.BARK_KEY || "";
+const ICON_URL = "https://raw.githubusercontent.com/lyuethel-create/bark-mcp-server/main/icon.png";
 
 function createServer(): McpServer {
   const server = new McpServer({
@@ -39,7 +40,7 @@ function createServer(): McpServer {
         const res = await fetch(`https://api.day.app/${BARK_KEY}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ title, body }),
+          body: JSON.stringify({ title, body, icon: ICON_URL }),
         });
 
         if (!res.ok) {
